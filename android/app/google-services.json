@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "364398081041",
+    "project_id": "noter-ca043",
+    "storage_bucket": "noter-ca043.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:364398081041:android:fdbc665b104b05530dadb0",
+        "android_client_info": {
+          "package_name": "com.example.noter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtHCLauNAAij0aBtb08VveDxoQN6a_u1g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
