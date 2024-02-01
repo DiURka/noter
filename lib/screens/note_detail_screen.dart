@@ -4,7 +4,7 @@ import 'package:noter/models/note.dart';
 class NoteDetailScreen extends StatelessWidget {
   final Note note;
   final int order;
-  NoteDetailScreen({required this.note, required this.order});
+  const NoteDetailScreen({super.key, required this.note, required this.order});
 
   @override
   Widget build(BuildContext context) {
@@ -19,15 +19,15 @@ class NoteDetailScreen extends StatelessWidget {
           children: [
             Text(
               note.title,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text(
               note.content,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
               ),
             ),

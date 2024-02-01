@@ -10,10 +10,12 @@ import 'package:noter/screens/home_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform,);
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -27,13 +29,13 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           textTheme: GoogleFonts.salsaTextTheme(
             Theme.of(context).textTheme.copyWith(
-              headline1: TextStyle(fontSize: 24, letterSpacing: 1.2),
-              headline2: TextStyle(fontSize: 20, letterSpacing: 1.0),
+              displayLarge: const TextStyle(fontSize: 24, letterSpacing: 1.2),
+              displayMedium: const TextStyle(fontSize: 20, letterSpacing: 1.0),
             ),
           ),
           primarySwatch: Colors.blue,
         ),
-        home: HomeScreen(),
+        home: const HomeScreen(),
       ),
     );
   }

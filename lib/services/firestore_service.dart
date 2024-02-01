@@ -15,13 +15,11 @@ class FirestoreService {
         return null;
       }
     } catch (error) {
-      print('Error fetching user data: $error');
       return null;
     }
   }
 
   Stream<List<Note>> getNotes(String? userId) {
-    print('Fetching notes for userId: $userId');
     return _notesCollection
       .where('userId', isEqualTo: userId)
       .snapshots()

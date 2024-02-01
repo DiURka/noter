@@ -8,7 +8,7 @@ class Note {
     required this.id,
     required this.title,
     required this.content,
-    required this.userId,
+    required this.userId
   });
 
   factory Note.fromMap(Map<String, dynamic> map) {
@@ -16,7 +16,7 @@ class Note {
       id: map['id'],
       title: map['title'],
       content: map['content'],
-      userId: map['userId'],
+      userId: map['userId']
     );
   }
 
@@ -25,7 +25,7 @@ class Note {
       'id': id,
       'title': title,
       'content': content,
-      'userId': userId,
+      'userId': userId
     };
   }
 
@@ -34,7 +34,7 @@ class Note {
       id: id,
       title: title,
       content: content,
-      userId: userId ?? this.userId,
+      userId: userId ?? this.userId
     );
   }
 }

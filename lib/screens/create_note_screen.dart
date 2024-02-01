@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:noter/providers/note_provider.dart';
 import 'package:noter/models/note.dart';
 
 class CreateNoteScreen extends StatefulWidget {
+  const CreateNoteScreen({super.key});
+
   @override
   _CreateNoteScreenState createState() => _CreateNoteScreenState();
 }
@@ -19,8 +22,8 @@ Future<String?> getUserId() async {
 }
 
 class _CreateNoteScreenState extends State<CreateNoteScreen> {
-  TextEditingController _titleController = TextEditingController();
-  TextEditingController _contentController = TextEditingController();
+  final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _contentController = TextEditingController();
 
   late String userId;
 
@@ -43,7 +46,7 @@ class _CreateNoteScreenState extends State<CreateNoteScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Create Note'),
+        title: const Text('Create Note'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -52,15 +55,26 @@ class _CreateNoteScreenState extends State<CreateNoteScreen> {
           children: [
             TextFormField(
               controller: _titleController,
-              decoration: InputDecoration(labelText: 'Title'),
+              decoration: const InputDecoration(
+                labelText: 'Title',
+                counterText: '',
+              ),
+              maxLines: null,
+              maxLength: 65, // Set your desired character limit
+              maxLengthEnforcement: MaxLengthEnforcement.enforced
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             TextFormField(
               controller: _contentController,
-              decoration: InputDecoration(labelText: 'Content'),
+              decoration: const InputDecoration(
+                labelText: 'Content',
+                counterText: '',
+              ),
               maxLines: null,
+              maxLength: 800, // Set your desired character limit
+              maxLengthEnforcement: MaxLengthEnforcement.enforced
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
                 Provider.of<NoteProvider>(context, listen: false).addNote(
@@ -73,7 +87,7 @@ class _CreateNoteScreenState extends State<CreateNoteScreen> {
                 );
                 Navigator.pop(context);
               },
-              child: Text('Save'),
+              child: const Text('Save'),
             ),
           ],
         ),

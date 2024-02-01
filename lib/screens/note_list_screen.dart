@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:noter/providers/note_provider.dart';
-import 'package:noter/services/auth_service.dart';
 import 'package:noter/models/note.dart';
 import 'package:noter/widgets/note_card.dart';
 
 class NoteListScreen extends StatefulWidget {
+  const NoteListScreen({super.key});
+
   @override
   _NoteListScreenState createState() => _NoteListScreenState();
 }
@@ -17,7 +18,7 @@ class _NoteListScreenState extends State<NoteListScreen> {
       return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          title: Text('Your Notes'),
+          title: const Text('Your Notes'),
         ),
         body: buildNoteStream(),
       );
@@ -29,14 +30,14 @@ class _NoteListScreenState extends State<NoteListScreen> {
       stream: Provider.of<NoteProvider>(context).getNotes(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         } else if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
         } else {
           List<Note> notes = snapshot.data ?? [];
 
           if (notes.isEmpty) {
-            return Center(child: Text('No notes available.'));
+            return const Center(child: Text('No notes available.'));
           }
 
           return ListView.builder(

@@ -8,7 +8,7 @@ class NoteProvider with ChangeNotifier {
   final FirestoreService _firestoreService = FirestoreService();
   final AuthService _authService = AuthService();
 
-  List<Note> _notes = [];
+  final List<Note> _notes = [];
   bool _isLoading = false;
 
   List<Note> get notes => _notes;
@@ -60,10 +60,12 @@ class NoteProvider with ChangeNotifier {
     try {
       String? userId = _authService.currentUser?.uid;
 
-      note = note.copyWith(userId: userId);
-      await _firestoreService.addNote(note);
-        } catch (error) {
-      print('Add Note Error: $error');
+      if (userId != null) {
+        note = note.copyWith(userId: userId);
+        await _firestoreService.addNote(note);
+      }
+    } catch (error) {
+      return;
     }
   }
 
@@ -72,7 +74,6 @@ class NoteProvider with ChangeNotifier {
       await _firestoreService.updateNote(note);
       notifyListeners();
     } catch (error) {
-      print('Add Note Error: $error');
     }
   }
 
@@ -81,7 +82,6 @@ class NoteProvider with ChangeNotifier {
       await _firestoreService.deleteNote(noteId);
       notifyListeners();
     } catch (error) {
-      print('Delete Note Error: $error');
     }
   }
 
@@ -93,14 +93,10 @@ class NoteProvider with ChangeNotifier {
 
       setLoading(false);
 
-      print('Registration successful. User: $email');
     } catch (error) {
-      print('Registration error: $error');
 
       String errorMessage = _getErrorMessage(error);
       throw errorMessage;
-
-      setLoading(false);
     }
   }
 
@@ -112,14 +108,11 @@ class NoteProvider with ChangeNotifier {
       setLoading(false);
 
       if (user != null) {
-        print('Login successful. User: ${user.uid}');
         return true;
       } else {
-        print('Authentication failed');
         return false;
       }
     } catch (error) {
-      print('Login error: $error');
       return false;
     }
   }

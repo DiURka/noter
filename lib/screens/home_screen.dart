@@ -8,6 +8,8 @@ import 'note_list_screen.dart';
 import 'create_note_screen.dart';
 
 class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final noteProvider = Provider.of<NoteProvider>(context);
@@ -16,7 +18,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text('NoteR', 
+        title: const Text('NoteR', 
           style: TextStyle(
             fontWeight: FontWeight.w800,
           )
@@ -27,7 +29,7 @@ class HomeScreen extends StatelessWidget {
               future: noteProvider.getUserData(authService.currentUser),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return CircularProgressIndicator();
+                  return const CircularProgressIndicator();
                 } else if (snapshot.hasError) {
                   return Text('Error: ${snapshot.error}');
                 } else {
@@ -37,15 +39,15 @@ class HomeScreen extends StatelessWidget {
                   return Row(
                     children: [
                       Text(displayName,
-                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
                       ),
                       IconButton(
-                        icon: Icon(Icons.exit_to_app),
+                        icon: const Icon(Icons.exit_to_app),
                         onPressed: () async {
                           await noteProvider.logout();
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => HomeScreen()),
+                            MaterialPageRoute(builder: (context) => const HomeScreen()),
                           );
                         },
                       ),
@@ -61,10 +63,10 @@ class HomeScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => SignUpScreen()),
+                      MaterialPageRoute(builder: (context) => const SignUpScreen()),
                     );
                   },
-                  child: Text('Sign Up',
+                  child: const Text('Sign Up',
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
                     )
@@ -74,10 +76,10 @@ class HomeScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => AuthScreen()),
+                      MaterialPageRoute(builder: (context) => const AuthScreen()),
                     );
                   },
-                  child: Text('Log In', 
+                  child: const Text('Log In', 
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
                     )
@@ -87,22 +89,22 @@ class HomeScreen extends StatelessWidget {
             ),
         ],
       ),
-      body: NoteListScreen(),
+      body: const NoteListScreen(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           if (authService.currentUser != null) {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => CreateNoteScreen()),
+              MaterialPageRoute(builder: (context) => const CreateNoteScreen()),
             );
           } else {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => AuthScreen()),
+              MaterialPageRoute(builder: (context) => const AuthScreen()),
             );
           }
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }

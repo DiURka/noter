@@ -9,7 +9,7 @@ class NoteCard extends StatelessWidget {
   final Note note;
   final int order;
 
-  NoteCard({required this.note, required this.order});
+  const NoteCard({super.key, required this.note, required this.order});
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +23,8 @@ class NoteCard extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 ListTile(
-                  leading: Icon(Icons.edit),
-                  title: Text('Edit'),
+                  leading: const Icon(Icons.edit),
+                  title: const Text('Edit'),
                   onTap: () {
                     Navigator.pop(context); // Close the bottom sheet
                     Navigator.push(
@@ -34,8 +34,8 @@ class NoteCard extends StatelessWidget {
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.delete),
-                  title: Text('Delete'),
+                  leading: const Icon(Icons.delete),
+                  title: const Text('Delete'),
                   onTap: () {
                     Navigator.pop(context); // Close the bottom sheet
                     // Implement delete logic and show a confirmation dialog
@@ -43,14 +43,14 @@ class NoteCard extends StatelessWidget {
                       context: context,
                       builder: (BuildContext context) {
                         return AlertDialog(
-                          title: Text('Delete Note'),
-                          content: Text('Are you sure you want to delete this note?'),
+                          title: const Text('Delete Note'),
+                          content: const Text('Are you sure you want to delete this note?'),
                           actions: [
                             TextButton(
                               onPressed: () {
                                 Navigator.pop(context); // Close the dialog
                               },
-                              child: Text('Cancel'),
+                              child: const Text('Cancel'),
                             ),
                             TextButton(
                               onPressed: () {
@@ -58,7 +58,7 @@ class NoteCard extends StatelessWidget {
                                 Provider.of<NoteProvider>(context, listen: false).deleteNote(note.id);
                                 Navigator.pop(context);
                               },
-                              child: Text('Delete'),
+                              child: const Text('Delete'),
                             ),
                           ],
                         );
@@ -72,8 +72,10 @@ class NoteCard extends StatelessWidget {
         );
       },
 
-      child: Card(
-        margin: EdgeInsets.all(8),
+      child: Container(
+        constraints: const BoxConstraints(maxHeight: 200),
+        child: Card(
+        margin: const EdgeInsets.all(8),
         child: InkWell(
           onTap: () {
             Navigator.push(
@@ -85,21 +87,29 @@ class NoteCard extends StatelessWidget {
           },
           child: ListTile(
             title: Text(note.title),
-            subtitle: Text(note.content),
-            contentPadding: EdgeInsets.symmetric(horizontal: 16),
+            subtitle: OverflowBox(
+              maxHeight: double.infinity,
+              alignment: Alignment.topCenter,
+              child: Text(
+                note.content,
+                maxLines: 5,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            contentPadding: const EdgeInsets.symmetric(horizontal: 16),
 
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
                 IconButton(
-                  icon: Icon(Icons.edit),
+                  icon: const Icon(Icons.edit),
                   onPressed: () {
                     Navigator.pop(context);
                     Navigator.push(context, MaterialPageRoute(builder: (context) => EditNoteScreen(note: note)));
                   },
                 ),
                 IconButton(
-                  icon: Icon(Icons.delete),
+                  icon: const Icon(Icons.delete),
                   onPressed: () {
                     // Implement your delete functionality here
                     // For example, show a confirmation dialog
@@ -107,14 +117,14 @@ class NoteCard extends StatelessWidget {
                       context: context,
                       builder: (BuildContext context) {
                         return AlertDialog(
-                          title: Text('Delete Note'),
-                          content: Text('Are you sure you want to delete this note?'),
+                          title: const Text('Delete Note'),
+                          content: const Text('Are you sure you want to delete this note?'),
                           actions: [
                             TextButton(
                               onPressed: () {
                                 Navigator.pop(context); // Close the dialog
                               },
-                              child: Text('Cancel'),
+                              child: const Text('Cancel'),
                             ),
                             TextButton(
                               onPressed: () {
@@ -122,7 +132,7 @@ class NoteCard extends StatelessWidget {
                                 Provider.of<NoteProvider>(context, listen: false).deleteNote(note.id);
                                 Navigator.pop(context);
                               },
-                              child: Text('Delete'),
+                              child: const Text('Delete'),
                             ),
                           ],
                         );
@@ -134,7 +144,9 @@ class NoteCard extends StatelessWidget {
             ),
           ),
         ),
-      ),
+        ),
+      )
+
     );
   }
 }

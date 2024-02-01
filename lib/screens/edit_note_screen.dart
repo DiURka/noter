@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:noter/providers/note_provider.dart';
 import 'package:noter/models/note.dart';
@@ -7,15 +8,15 @@ import 'home_screen.dart';
 
 class EditNoteScreen extends StatefulWidget {
   final Note note;
-  EditNoteScreen({required this.note});
+  const EditNoteScreen({super.key, required this.note});
 
   @override
   _EditNoteScreenState createState() => _EditNoteScreenState();
 }
 
 class _EditNoteScreenState extends State<EditNoteScreen> {
-  TextEditingController _titleController = TextEditingController();
-  TextEditingController _contentController = TextEditingController();
+  final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _contentController = TextEditingController();
 
   late String userIdentifier; // Declare userIdentifier as a late variable
 
@@ -35,13 +36,13 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit Note'),
+        title: const Text('Edit Note'),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => HomeScreen()),
+              MaterialPageRoute(builder: (context) => const HomeScreen()),
             );
           },
         ),
@@ -53,15 +54,26 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
           children: [
             TextFormField(
               controller: _titleController,
-              decoration: InputDecoration(labelText: 'Title'),
+              decoration: const InputDecoration(
+                labelText: 'Title',
+                counterText: '',
+              ),
+              maxLines: null,
+              maxLength: 65,
+              maxLengthEnforcement: MaxLengthEnforcement.enforced
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             TextFormField(
               controller: _contentController,
-              decoration: InputDecoration(labelText: 'Content'),
+              decoration: const InputDecoration(
+                labelText: 'Content',
+                counterText: '',
+              ),
               maxLines: null,
+              maxLength: 800, // Set your desired character limit
+              maxLengthEnforcement: MaxLengthEnforcement.enforced
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () async {
                 // // Update note in the provider and Firestore
@@ -86,10 +98,10 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
 
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                  MaterialPageRoute(builder: (context) => const HomeScreen()),
                 );
               },
-              child: Text('Save'),
+              child: const Text('Save'),
             ),
           ],
         ),

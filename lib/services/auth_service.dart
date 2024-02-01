@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -27,7 +26,7 @@ class AuthService {
         return null; 
       }
     } catch (error) {
-      print("Registration Error: $error");
+      return null;
     }
   }
 
@@ -40,7 +39,6 @@ class AuthService {
       User? user = result.user;
       return user;
     } catch (error) {
-      print("Login Error: $error");
       return null;
     }
   }
