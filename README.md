@@ -9,6 +9,7 @@ NoteR is a mobile application for note-taking. It allows users to create, edit, 
 3. [Screens Overview](#screens-overview)
 4. [Networking/Database](#networking-database)
 5. [How to Understand the Code](#how-to-understand-the-code)
+5. [Demo](#demo)
 
 ## Getting Started
 Follow these steps to set up and run the project on your local machine:
@@ -52,4 +53,5 @@ The app uses Firebase for backend services. Firebase Cloud Firestore is used to 
 2. **Screen Implementation**: Each screen is implemented in the `lib/screens` directory.
 3. **Networking**: Networking and database-related code can be found in the `lib/services` directory.
 
+## Demo
 <video src="bandicam%202024-02-01%2021-16-26-970.mp4" controls title="Title"></video>
