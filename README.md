@@ -51,3 +51,5 @@ The app uses Firebase for backend services. Firebase Cloud Firestore is used to 
 1. **State Management**: The app uses the Provider package for state management. Look into `lib/providers` for details.
 2. **Screen Implementation**: Each screen is implemented in the `lib/screens` directory.
 3. **Networking**: Networking and database-related code can be found in the `lib/services` directory.
+
+<video src="bandicam%202024-02-01%2021-16-26-970.mp4" controls title="Title"></video>
