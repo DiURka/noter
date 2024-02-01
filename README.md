@@ -54,4 +54,4 @@ The app uses Firebase for backend services. Firebase Cloud Firestore is used to 
 3. **Networking**: Networking and database-related code can be found in the `lib/services` directory.
 
 ## Demo
-<video src="bandicam%202024-02-01%2021-16-26-970.mp4" controls title="Title"></video>
+![Alt text](<bandicam 2024-02-01 21-16-26-970.gif>)
