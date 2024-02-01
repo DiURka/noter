@@ -9,7 +9,7 @@ NoteR is a mobile application for note-taking. It allows users to create, edit, 
 3. [Screens Overview](#screens-overview)
 4. [Networking/Database](#networking-database)
 5. [How to Understand the Code](#how-to-understand-the-code)
-5. [Demo](#demo)
+6. [Demo](#demo)
 
 ## Getting Started
 Follow these steps to set up and run the project on your local machine:
