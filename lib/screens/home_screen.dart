@@ -6,7 +6,6 @@ import 'note_signup.dart';
 import 'note_login.dart';
 import 'note_list_screen.dart';
 import 'create_note_screen.dart';
-import 'edit_note_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   @override

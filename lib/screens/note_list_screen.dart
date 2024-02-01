@@ -4,7 +4,6 @@ import 'package:noter/providers/note_provider.dart';
 import 'package:noter/services/auth_service.dart';
 import 'package:noter/models/note.dart';
 import 'package:noter/widgets/note_card.dart';
-import 'home_screen.dart';
 
 class NoteListScreen extends StatefulWidget {
   @override

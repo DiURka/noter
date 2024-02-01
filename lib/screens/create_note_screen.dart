@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:noter/providers/note_provider.dart';
 import 'package:noter/models/note.dart';
-import 'home_screen.dart';
 
 class CreateNoteScreen extends StatefulWidget {
   @override

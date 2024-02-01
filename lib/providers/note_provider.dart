@@ -60,11 +60,9 @@ class NoteProvider with ChangeNotifier {
     try {
       String? userId = _authService.currentUser?.uid;
 
-      if (userId != null) {
-        note = note.copyWith(userId: userId);
-        await _firestoreService.addNote(note);
-      }
-    } catch (error) {
+      note = note.copyWith(userId: userId);
+      await _firestoreService.addNote(note);
+        } catch (error) {
       print('Add Note Error: $error');
     }
   }
